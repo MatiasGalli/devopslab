@@ -1,4 +1,4 @@
-FROM node:22-alpine3.19
+FROM node:22
 
 WORKDIR /usr/src/app
 
@@ -7,9 +7,6 @@ COPY package*.json ./
 
 # Instala las dependencias de la aplicación
 RUN npm install
-
-# Rebuild bcrypt para la arquitectura de Alpine
-RUN npm rebuild bcrypt
 
 # Copia el resto del código de la aplicación
 COPY . .
