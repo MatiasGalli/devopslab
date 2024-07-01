@@ -1,15 +1,18 @@
-FROM node:18
+FROM node:22
 
 WORKDIR /usr/src/app
 
 # Copia los archivos package.json y package-lock.json
 COPY package*.json ./
 
-# Instala las dependencias de la aplicación
-RUN npm install
-
-# Rebuild bcrypt para la arquitectura de Docker
-RUN npm rebuild bcrypt
+# Instala las herramientas necesarias y las dependencias de la aplicación
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends make gcc g++ python3 && \
+    npm install && \
+    npm rebuild bcrypt --build-from-source && \
+    apt-get purge -y make gcc g++ python3 && \
+    apt-get autoremove -y && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copia el resto del código de la aplicación
 COPY . .
