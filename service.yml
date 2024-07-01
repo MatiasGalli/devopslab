@@ -1,12 +1,14 @@
-apiVersion: v1 # Kubernetes API version
-kind: Service # Kubernetes resource kind we are creating
-metadata: # Metadata of the resource kind we are creating
-  name: devops-lab-ssvc
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-lab-service
+  namespace: jenkins
 spec:
   selector:
     app: devops-lab
   ports:
-    - protocol: "TCP"
-      port: 3000 
-      targetPort: 3000 
-  type: LoadBalancer # type of the service.
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 32000  # Elige un puerto entre 30000-32767
+  type: NodePort
