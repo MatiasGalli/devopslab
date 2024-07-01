@@ -21,13 +21,16 @@ RUN apt-get update && \
 # Copia el resto del código de la aplicación
 COPY . .
 
+# Crear el directorio de la base de datos y establecer permisos
+RUN mkdir -p database && \
+    touch database/db.sqlite && \
+    chmod 777 database/db.sqlite
+
 # Construye la aplicación
 RUN npm run build
 
 # Exponer el puerto en el que la aplicación estará escuchando
 EXPOSE 3000
-
-
 
 # Definir el comando de inicio de la aplicación
 CMD ["npm", "run", "start:prod"]
