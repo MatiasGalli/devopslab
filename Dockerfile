@@ -2,19 +2,23 @@ FROM node:22-alpine3.19
 
 WORKDIR /usr/src/app
 
-#MISC Files
+# Copia los archivos package.json y package-lock.json
 COPY package*.json ./
-COPY tsconfig*.json ./
-COPY nest-cli.json ./
 
-#Install
+# Instala las dependencias de la aplicación
 RUN npm install
-RUN npm rebuild bcrypt 
+
+# Rebuild bcrypt para la arquitectura de Alpine
+RUN npm rebuild bcrypt
+
+# Copia el resto del código de la aplicación
 COPY . .
 
-#Build
+# Construye la aplicación
 RUN npm run build
+
+# Exponer el puerto en el que la aplicación estará escuchando
 EXPOSE 3000
 
-#Run executable
+# Definir el comando de inicio de la aplicación
 CMD ["npm", "run", "start:prod"]
