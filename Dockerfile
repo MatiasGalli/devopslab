@@ -1,23 +1,19 @@
-# Usa una imagen base oficial de Node.js
-FROM node:22.3-alpine3.19
+FROM node:22-alpine3.19
 
-# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /usr/src/app
 
-# Copia los archivos package.json y package-lock.json
+#MISC Files
 COPY package*.json ./
+COPY tsconfig*.json ./
+COPY nest-cli.json ./
 
-# Instala las dependencias de la aplicación
+#Install
 RUN npm install
-
-# Copia el resto del código de la aplicación
 COPY . .
 
-# Construye la aplicación
+#Build
 RUN npm run build
-
-# Exponer el puerto en el que la aplicación estará escuchando
 EXPOSE 3000
 
-# Definir el comando de inicio de la aplicación
+#Run executable
 CMD ["npm", "run", "start:prod"]
