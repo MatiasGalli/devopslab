@@ -1,4 +1,4 @@
-FROM node:22
+FROM node:18
 
 WORKDIR /usr/src/app
 
@@ -7,7 +7,10 @@ COPY package*.json ./
 
 # Instala las dependencias de la aplicación
 RUN npm install
+
+# Rebuild bcrypt para la arquitectura de Docker
 RUN npm rebuild bcrypt
+
 # Copia el resto del código de la aplicación
 COPY . .
 
