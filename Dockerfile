@@ -9,6 +9,7 @@ COPY nest-cli.json ./
 
 #Install
 RUN npm install
+RUN npm rebuild bcrypt 
 COPY . .
 
 #Build
