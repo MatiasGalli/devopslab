@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 # Definir variables de entorno
 ENV PORT=3000
-ENV DATABASE_PATH=database/db.sqlite
+ENV DATABASE_PATH=/usr/src/app/database/db.sqlite
 
 # Copia los archivos package.json y package-lock.json
 COPY package*.json ./
