@@ -7,7 +7,7 @@ import {
 export class AppController {
   @Get()
   getMany() {
-    return 'ola chicos';
+    return 'Esto esta en dev';
   }
   // @Get(':id')
     // getOne() {
