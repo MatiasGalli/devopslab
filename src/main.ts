@@ -12,5 +12,6 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter());
 
   await app.listen(configService.getAppPort() || 3000);
+  // aca desde branch xd
 }
 bootstrap();
