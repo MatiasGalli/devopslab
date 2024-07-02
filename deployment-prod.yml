@@ -5,16 +5,17 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: devops-lab
+      app: ddevops-lab-prod
   replicas: 2 # Number of replicas that will be created for this deployment
   template:
     metadata:
       labels:
-        app: devops-lab
+        app: devops-lab-prod
     spec:
       containers:
-        - name: devops-lab
-          image: claudiopizarro/devops-lab:latest # Image that will be used to containers in the cluster
+        - name: devops-lab-prod
+          image: claudiopizarro/devops-lab-prod:latest # Image that will be used to containers in the cluster
           imagePullPolicy: Always
           ports:
             - containerPort: 3000 # The port that the container is running on in the cluster
+
