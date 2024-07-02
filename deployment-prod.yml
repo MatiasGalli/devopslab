@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment # Kubernetes resource kind we are creating
 metadata:
-  name: devops-lab-deploy
+  name: devops-lab-prod-deploy
 spec:
   selector:
     matchLabels:
-      app: ddevops-lab-prod
+      app: devops-lab-prod
   replicas: 2 # Number of replicas that will be created for this deployment
   template:
     metadata:
